@@ -20,6 +20,9 @@ def gelu(
     complex_mode="jax",
     out: Optional[JaxArray] = None,
 ) -> JaxArray:
+
+
+    
     return jax.nn.gelu(x, approximate)
 
 
