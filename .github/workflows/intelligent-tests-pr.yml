@@ -33,6 +33,12 @@ jobs:
           else
               echo "This PR does not introduce any new test failures! Yippee!"
           fi
+      - name: comment tests on PR
+        uses: machine-learning-apps/pr-comment@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          path: combined_failures.txt
 
   run_tests:
     runs-on: ubuntu-latest
