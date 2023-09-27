@@ -35,8 +35,8 @@ jobs:
           fi
       - name: Write GitHub Comment
         uses: actions/github-script@v6
-        github-token: ${{ secrets.IVY_BRANCH_TOKEN }}
         with:
+          github-token: ${{ secrets.IVY_BRANCH_TOKEN }}
           script: |
             github.rest.issues.createComment({
               issue_number: context.issue.number,
