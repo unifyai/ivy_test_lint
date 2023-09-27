@@ -45,7 +45,7 @@ def gelu(
     approximate: bool = False,
     complex_mode="jax",
     out: Optional[torch.Tensor] = None,
-    test
+    test,
 ) -> torch.Tensor:
     if approximate:
         return (
