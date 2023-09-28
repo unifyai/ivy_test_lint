@@ -33,7 +33,7 @@ jobs:
               echo "This PR introduces the following new failing tests:\n\n" >> "$GITHUB_OUTPUT"
               cat combined_failures.txt >> "$GITHUB_OUTPUT"
           else
-              echo "This PR does not introduce any new test failures! Yippee!" >> "$GITHUB_OUTPUT"
+              echo 'This PR does not introduce any new test failures! Yippee!' >> $GITHUB_OUTPUT
           fi
       - name: Write GitHub Comment
         uses: actions/github-script@v6
@@ -52,7 +52,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        branch: [ 1, 2, 3]
+        branch: [ 2, 3]
 
     steps:
       - name: Checkout Ivy 🛎
