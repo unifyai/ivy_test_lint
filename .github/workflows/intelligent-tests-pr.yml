@@ -30,14 +30,11 @@ jobs:
           find . -name "new_failures_*.txt" -exec cat {} + > combined_failures.txt
           if [ -s combined_failures.txt ]
           then
-            {
-            echo "MESSAGE"<<EOF
-            echo "=This PR introduces the following new failing tests:\n\n"
+            echo "This PR introduces the following new failing tests:\n\n"
             cat combined_failures.txt
-            echo EOF
-            } >> "$GITHUB_OUTPUT"
+            echo "MESSAGE=This PR does not introduced new failing tests! could you check them please!" >> "$GITHUB_OUTPUT"
           else
-              echo "This PR does not introduce any new test failures! Yippee!" >> "$GITHUB_OUTPUT"
+              echo "MESSAGE=This PR does not introduce any new test failures! Yippee!" >> "$GITHUB_OUTPUT"
           fi
       - name: Write GitHub Comment
         uses: actions/github-script@v6
@@ -48,7 +45,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'Thanks for the PR, ${{ steps.new_failures_results.outputs.* }}'
+              body: 'Thanks for the PR, ${{ steps.new_failures_results.outputs.MESSAGE }}'
             })
 
   run_tests:
