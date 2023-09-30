@@ -8,7 +8,7 @@ from ivy.functional.frontends.paddle.func_wrapper import to_ivy_arrays_and_back
 # --------------- #
 
 
-def _broadcast_pooling_helper(x, pool_dims: str = "2d", name: str = "padding"):
+def _broadcast_pooling_helper(x, pool_dims: str = "2d", name: str = "padding", extra=0):
     dims = {"1d": 1, "2d": 2, "3d": 3}
 
     if isinstance(x, int):
