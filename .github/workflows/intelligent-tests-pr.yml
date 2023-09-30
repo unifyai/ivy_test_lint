@@ -12,6 +12,21 @@ jobs:
     if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
+      - name: Create file
+        run: |
+          echo "Hello, world!" > myfile.txt
+          cat myfile.txt
+      
+      - name: output file
+        id: output_file
+        run: | 
+          # make myfile.txt as action output
+          {
+            echo 'MESSAGE<<EOF'
+            cat myfile.txt
+            echo EOF
+          } >> "$GITHUB_OUTPUT"
+
       - name: Find Comment
         uses: peter-evans/find-comment@v2
         id: fc
@@ -29,4 +44,5 @@ jobs:
             Build output
             <!--- CI Output -->
              ${{ steps.fc.outputs.comment-id }}
+             ${{ steps.output_file.outputs.MESSAGE}}
           edit-mode: replace
